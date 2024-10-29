@@ -2,9 +2,6 @@ import datetime
 from groq import Groq
 import requests
 
-current_time = datetime.datetime.now()
-current_model = None
-
 client = Groq(
     api_key='YOUR-API-KEY-HERE',
 )
@@ -14,6 +11,7 @@ headers = {
     "Content-Type": "application/json"
 }
 
+current_model = None
 response = requests.get("https://api.groq.com/openai/v1/models", headers=headers)
 available_models = response.json()
 model_ids = [item['id'] for item in available_models['data']]
